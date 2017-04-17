@@ -18,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -67,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
             public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
             }
         });
+        adapter = new FilmRecyclerViewAdapter();
+        AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);
+        alphaAdapter.setDuration(1000);
+        recyclerView.setAdapter(alphaAdapter);
     }
 
     @Override
@@ -80,8 +85,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Film>> call, Response<List<Film>> response) {
                 if (response.isSuccessful()) {
-                    adapter = new FilmRecyclerViewAdapter();
-                    recyclerView.setAdapter(adapter);
                     adapter.addAll(response.body());
                 }
             }
