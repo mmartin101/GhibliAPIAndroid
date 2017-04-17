@@ -1,11 +1,15 @@
 package com.mmartin.ghibliapi;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.mmartin.ghibliapi.film.Film;
+import com.mmartin.ghibliapi.film.FilmDetailActivity;
 import com.mmartin.ghibliapi.film.FilmRecyclerViewAdapter;
 import com.mmartin.ghibliapi.retrofit.GhibliApiManager;
 
@@ -31,7 +35,38 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         unbinder = ButterKnife.bind(this);
+        final GestureDetector gestureDetector = new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onSingleTapUp(MotionEvent e) {
+                View child = recyclerView.findChildViewUnder(e.getX(), e.getY());
+                if (child != null) {
+                    Film film = adapter.getItemAt(recyclerView.getChildAdapterPosition(child));
+                    if (film != null) {
+                        startActivity(FilmDetailActivity.newIntent(getBaseContext(), film));
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+
+            @Override
+            public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+                gestureDetector.onTouchEvent(e);
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+            }
+        });
     }
 
     @Override

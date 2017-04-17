@@ -40,4 +40,12 @@ public class FilmRecyclerViewAdapter extends RecyclerView.Adapter<FilmCardViewHo
         data = new ArrayList<>(list);
         notifyDataSetChanged();
     }
+
+    public Film getItemAt(int position) {
+        if (data != null && position < data.size()) {
+            return data.get(position);
+        }
+
+        return null;
+    }
 }
