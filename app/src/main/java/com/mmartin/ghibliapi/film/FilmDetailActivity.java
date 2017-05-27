@@ -3,10 +3,13 @@ package com.mmartin.ghibliapi.film;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -18,7 +21,6 @@ import com.mmartin.ghibliapi.retrofit.GhibliApiManager;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +31,10 @@ public class FilmDetailActivity extends AppCompatActivity {
     TextView titleTextView;
     @BindView(R.id.film_description_text_view)
     TextView descriptionTextView;
+    @BindView(R.id.film_director)
+    TextView directorTextView;
+    @BindView(R.id.film_producer)
+    TextView producerTextView;
     @BindView(R.id.content)
     LinearLayout content;
 
@@ -49,11 +55,15 @@ public class FilmDetailActivity extends AppCompatActivity {
             film = getIntent().getParcelableExtra("film");
             titleTextView.setText(film.getTitle());
             descriptionTextView.setText(film.getDescription());
+            directorTextView.setText(getString(R.string.director, film.getDirector()));
+            producerTextView.setText(getString(R.string.producer, film.getProducer()));
         }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
         getPeople();
 
     }
@@ -63,9 +73,11 @@ public class FilmDetailActivity extends AppCompatActivity {
         GetPeopleTask task = new GetPeopleTask() {
             @Override
             protected void onPostExecute(List<Person> people) {
+                int padding = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics());
                 for (Person person : people) {
                     TextView tv = new TextView(getBaseContext());
                     tv.setText(person.getName());
+                    tv.setPadding(padding, padding, padding, padding);
                     content.addView(tv);
                 }
             }
@@ -86,7 +98,7 @@ public class FilmDetailActivity extends AppCompatActivity {
                 if (!id.trim().isEmpty()) {
                     try {
                         personList.add(service.getPeopleById(id).execute().body());
-                    } catch (IOException e) {
+                    } catch (Exception e) {
                         Timber.e(e);
                     }
                 }
