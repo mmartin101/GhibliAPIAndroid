@@ -1,4 +1,6 @@
-package com.mmartin.ghibliapi.film;
+package com.mmartin.ghibliapi.network;
+
+import com.mmartin.ghibliapi.film.Film;
 
 import java.util.List;
 

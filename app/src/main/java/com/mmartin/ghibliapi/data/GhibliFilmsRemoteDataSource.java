@@ -3,9 +3,12 @@ package com.mmartin.ghibliapi.data;
 import android.support.annotation.NonNull;
 
 import com.mmartin.ghibliapi.film.Film;
-import com.mmartin.ghibliapi.retrofit.GhibliApiManager;
+import com.mmartin.ghibliapi.network.GhibliApi;
 
 import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -16,11 +19,18 @@ import timber.log.Timber;
  * <p>
  * Created by mmartin on 9/12/17.
  */
-
+@Singleton
 public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
+    GhibliApi api;
+
+    @Inject
+    public GhibliFilmsRemoteDataSource(@NonNull GhibliApi api) {
+        this.api = api;
+    }
+
     @Override
     public void getFilms(@NonNull final LoadFilmsCallback callback) {
-        GhibliApiManager.getInstance().getFilmService().getFilms().enqueue(new retrofit2.Callback<List<Film>>() {
+        api.getFilmService().getFilms().enqueue(new retrofit2.Callback<List<Film>>() {
             @Override
             public void onResponse(@NonNull Call<List<Film>> call, @NonNull Response<List<Film>> response) {
                 callback.onFilmsLoaded(response.body());
@@ -36,7 +46,7 @@ public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
 
     @Override
     public void getFilm(@NonNull String id, @NonNull final LoadFilmCallback callback) {
-        GhibliApiManager.getInstance().getFilmService().getFilmById(id).enqueue(new retrofit2.Callback<Film>() {
+        api.getFilmService().getFilmById(id).enqueue(new retrofit2.Callback<Film>() {
             @Override
             public void onResponse(@NonNull Call<Film> call, @NonNull Response<Film> response) {
                 callback.onFilmLoaded(response.body());

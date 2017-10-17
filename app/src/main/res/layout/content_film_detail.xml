@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.mmartin.ghibliapi.film.FilmDetailActivity"
+    tools:context="com.mmartin.ghibliapi.film.detail.FilmDetailActivity"
     tools:showIn="@layout/activity_film_detail">
 
     <TextView

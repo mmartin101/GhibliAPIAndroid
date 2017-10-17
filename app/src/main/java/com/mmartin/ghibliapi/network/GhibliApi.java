@@ -1,7 +1,8 @@
-package com.mmartin.ghibliapi.retrofit;
+package com.mmartin.ghibliapi.network;
 
-import com.mmartin.ghibliapi.film.GhibliFilmService;
 import com.mmartin.ghibliapi.people.GhibliPeopleService;
+
+import javax.inject.Singleton;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.moshi.MoshiConverterFactory;
@@ -9,23 +10,14 @@ import retrofit2.converter.moshi.MoshiConverterFactory;
 /**
  * Created by mmartin on 4/10/17.
  */
-
-public class GhibliApiManager {
+@Singleton
+public class GhibliApi {
     public static String API_URL = "https://ghibliapi.herokuapp.com/";
-    private static GhibliApiManager instance;
 
     private Retrofit retrofit;
 
-    private GhibliApiManager() {
+    public GhibliApi() {
         retrofit = new Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create()).baseUrl(API_URL).build();
-    }
-
-    public static GhibliApiManager getInstance() {
-        if (instance == null) {
-            instance = new GhibliApiManager();
-        }
-
-        return instance;
     }
 
     public GhibliFilmService getFilmService() {

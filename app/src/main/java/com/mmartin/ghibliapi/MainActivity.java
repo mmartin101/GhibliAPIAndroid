@@ -9,20 +9,13 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.mmartin.ghibliapi.film.Film;
-import com.mmartin.ghibliapi.film.FilmDetailActivity;
+import com.mmartin.ghibliapi.film.detail.FilmDetailActivity;
 import com.mmartin.ghibliapi.film.FilmRecyclerViewAdapter;
-import com.mmartin.ghibliapi.retrofit.GhibliApiManager;
-
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import timber.log.Timber;
 
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view)
@@ -81,19 +74,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getFilms() {
-        GhibliApiManager.getInstance().getFilmService().getFilms().enqueue(new Callback<List<Film>>() {
-            @Override
-            public void onResponse(Call<List<Film>> call, Response<List<Film>> response) {
-                if (response.isSuccessful()) {
-                    adapter.addAll(response.body());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Film>> call, Throwable t) {
-                Timber.e(t, "Error getting films...");
-            }
-        });
+//        GhibliApi.getInstance().getFilmService().getFilms().enqueue(new Callback<List<Film>>() {
+//            @Override
+//            public void onResponse(Call<List<Film>> call, Response<List<Film>> response) {
+//                if (response.isSuccessful()) {
+//                    adapter.addAll(response.body());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Film>> call, Throwable t) {
+//                Timber.e(t, "Error getting films...");
+//            }
+//        });
     }
 
     @Override
