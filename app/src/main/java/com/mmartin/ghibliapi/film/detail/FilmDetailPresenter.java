@@ -1,10 +1,13 @@
 package com.mmartin.ghibliapi.film.detail;
 
-import com.mmartin.ghibliapi.data.GhibliFilmsDataSource;
 import com.mmartin.ghibliapi.data.GhibliFilmsRepository;
 import com.mmartin.ghibliapi.film.Film;
 
 import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import timber.log.Timber;
 
 /**
  * Created by mmartin on 8/12/17.
@@ -31,17 +34,15 @@ public class FilmDetailPresenter implements FilmDetailContract.Presenter {
             return;
         }
 
-        dataRepository.getFilm(filmId, new GhibliFilmsDataSource.LoadFilmCallback() {
-            @Override
-            public void onFilmLoaded(Film film) {
-                showFilm(film);
-            }
-
-            @Override
-            public void onDataNotAvailable() {
-                view.showMissingFilm();
-            }
-        });
+        dataRepository.getFilm(filmId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        this::showFilm,
+                        (foo) -> {
+                            Timber.e(foo);
+                            view.showMissingFilm();
+                        });
     }
 
     private void showFilm(Film film) {

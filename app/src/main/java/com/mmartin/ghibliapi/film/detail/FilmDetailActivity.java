@@ -9,12 +9,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mmartin.ghibliapi.R;
+import com.mmartin.ghibliapi.di.component.DaggerFilmDetailComponent;
 import com.mmartin.ghibliapi.film.Film;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+//import com.mmartin.ghibliapi.di.component.DaggerFilmDetailComponent;
 
 public class FilmDetailActivity extends AppCompatActivity implements FilmDetailContract.View {
     @BindView(R.id.film_title_text_view)
@@ -37,14 +40,10 @@ public class FilmDetailActivity extends AppCompatActivity implements FilmDetailC
         return intent;
     }
 
-    @Inject
-    public FilmDetailActivity() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        DaggerFilmDetailComponent.create().inject(this);
         setContentView(R.layout.activity_film_detail);
         ButterKnife.bind(this);
         Toolbar toolbar = findViewById(R.id.toolbar);

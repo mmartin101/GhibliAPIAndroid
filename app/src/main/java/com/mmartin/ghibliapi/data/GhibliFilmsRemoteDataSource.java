@@ -10,16 +10,13 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import retrofit2.Call;
-import retrofit2.Response;
-import timber.log.Timber;
+import io.reactivex.Observable;
 
 /**
  * Concrete implementation for getting data from the Ghibli API
  * <p>
  * Created by mmartin on 9/12/17.
  */
-@Singleton
 public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
     GhibliApi api;
 
@@ -29,34 +26,22 @@ public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
     }
 
     @Override
-    public void getFilms(@NonNull final LoadFilmsCallback callback) {
-        api.getFilmService().getFilms().enqueue(new retrofit2.Callback<List<Film>>() {
-            @Override
-            public void onResponse(@NonNull Call<List<Film>> call, @NonNull Response<List<Film>> response) {
-                callback.onFilmsLoaded(response.body());
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<List<Film>> call, @NonNull Throwable t) {
-                Timber.e(t);
-                callback.onDataNotAvailable();
-            }
-        });
+    public Observable<List<Film>> getFilms() {
+        return api.getFilmService().getFilms();
     }
 
     @Override
-    public void getFilm(@NonNull String id, @NonNull final LoadFilmCallback callback) {
-        api.getFilmService().getFilmById(id).enqueue(new retrofit2.Callback<Film>() {
-            @Override
-            public void onResponse(@NonNull Call<Film> call, @NonNull Response<Film> response) {
-                callback.onFilmLoaded(response.body());
-            }
+    public Observable<Film> getFilm(@NonNull String id) {
+        return api.getFilmService().getFilmById(id);
+    }
 
-            @Override
-            public void onFailure(@NonNull Call<Film> call, @NonNull Throwable t) {
-                Timber.e(t);
-                callback.onDataNotAvailable();
-            }
-        });
+    @Override
+    public void storeFilms(List<Film> films) {
+        // nada
+    }
+
+    @Override
+    public void storeFilm(Film film) {
+        // nada
     }
 }

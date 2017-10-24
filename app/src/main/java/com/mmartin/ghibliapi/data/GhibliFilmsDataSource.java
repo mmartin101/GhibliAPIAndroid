@@ -6,6 +6,8 @@ import com.mmartin.ghibliapi.film.Film;
 
 import java.util.List;
 
+import io.reactivex.Observable;
+
 /**
  * Main entry point for accessing film data
  * <p>
@@ -13,19 +15,10 @@ import java.util.List;
  */
 
 public interface GhibliFilmsDataSource {
-    void getFilms(@NonNull LoadFilmsCallback callback);
+    Observable<List<Film>> getFilms();
 
-    void getFilm(@NonNull String id, @NonNull LoadFilmCallback callback);
+    Observable<Film> getFilm(@NonNull String id);
 
-    interface Callback {
-        void onDataNotAvailable();
-    }
-
-    interface LoadFilmsCallback extends Callback {
-        void onFilmsLoaded(List<Film> data);
-    }
-
-    interface LoadFilmCallback extends Callback {
-        void onFilmLoaded(Film film);
-    }
+    void storeFilms(List<Film> films);
+    void storeFilm(Film film);
 }

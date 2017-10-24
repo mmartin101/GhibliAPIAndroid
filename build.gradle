@@ -6,7 +6,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.0-beta7'
+        classpath 'com.android.tools.build:gradle:3.0.0-rc2'
 
         // Better IDE support for annotations (so Android Studio interacts better with Dagger)
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -36,7 +36,7 @@ ext {
     buildToolsVersion = '26.0.2'
 
     // App dependencies
-    supportLibraryVersion = '26.0.0'
+    supportLibraryVersion = '26.1.0'
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
     powerMockito = '1.6.2'

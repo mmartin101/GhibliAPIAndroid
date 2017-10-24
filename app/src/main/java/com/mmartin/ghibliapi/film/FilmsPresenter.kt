@@ -1,20 +1,18 @@
 package com.mmartin.ghibliapi.film
 
-import com.mmartin.ghibliapi.data.GhibliFilmsDataSource
 import com.mmartin.ghibliapi.data.GhibliFilmsRepository
-import javax.inject.Inject
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 /**
+ * Presenter for any view that shows multiple Films
+ *
  * Created by mmartin on 10/13/17.
  */
-class FilmsPresenter : FilmsContract.Presenter {
-    internal var view: FilmsContract.View? = null
-    lateinit internal var dataRepository: GhibliFilmsRepository
-
-    @Inject
-    constructor(dataRepository: GhibliFilmsRepository) {
-        this.dataRepository = dataRepository
-    }
+class FilmsPresenter(repository: GhibliFilmsRepository) : FilmsContract.Presenter {
+    private var view: FilmsContract.View? = null
+    private var dataRepository: GhibliFilmsRepository = repository
 
     override fun start() {
         loadFilms()
@@ -25,6 +23,15 @@ class FilmsPresenter : FilmsContract.Presenter {
     }
 
     override fun loadFilms() {
+        dataRepository.films
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    view?.showFilms(it)
+                }, {
+                    Timber.e(it)
+                    view?.showError()
+                })
     }
 
 }

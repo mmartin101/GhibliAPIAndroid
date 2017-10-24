@@ -1,4 +1,4 @@
-package com.mmartin.ghibliapi.data;
+package com.mmartin.ghibliapi.di;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
