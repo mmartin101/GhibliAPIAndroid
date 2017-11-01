@@ -28,12 +28,14 @@ public class GhibliFilmsLocalDataSource implements GhibliFilmsDataSource {
     }
 
     @Override
-    public Observable<List<Film>> getFilms() {
-        if (filmMap.isEmpty()) {
-            return null;
-        }
+    public boolean isEmpty() {
+        return filmMap.isEmpty();
+    }
 
-        return Observable.just(new ArrayList<>(filmMap.values()));
+    @Override
+    public Observable<List<Film>> getFilms() {
+        ArrayList<Film> films = new ArrayList<>(filmMap.values());
+        return Observable.just(films);
     }
 
     @Override

@@ -35,7 +35,7 @@ class FilmsActivity : AppCompatActivity(), FilmsContract.View {
                 if (child != null) {
                     val film = adapter.getItemAt(recycler_view.getChildAdapterPosition(child))
                     if (film != null) {
-                        startActivity(FilmDetailActivity.newIntent(baseContext, film))
+                        startActivity(FilmDetailActivity.newIntent(baseContext, film.id))
                         return true
                     }
                 }
@@ -63,7 +63,7 @@ class FilmsActivity : AppCompatActivity(), FilmsContract.View {
 
     override fun onStart() {
         super.onStart()
-        presenter.setView(this)
+        presenter.attachView(this)
         presenter.start()
         setLoadingIndicator(true)
     }

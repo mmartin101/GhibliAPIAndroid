@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * Created by mmartin on 10/11/17.
  */
 @Module
-class GhibliFilmsRepositoryModule() {
+class GhibliFilmsRepositoryModule {
     @Singleton
     @Remote
     @Provides

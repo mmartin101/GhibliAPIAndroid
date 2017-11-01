@@ -8,7 +8,6 @@ import com.mmartin.ghibliapi.network.GhibliApi;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 
@@ -23,6 +22,11 @@ public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
     @Inject
     public GhibliFilmsRemoteDataSource(@NonNull GhibliApi api) {
         this.api = api;
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return false;
     }
 
     @Override

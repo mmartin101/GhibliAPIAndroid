@@ -18,7 +18,7 @@ class FilmsPresenter(repository: GhibliFilmsRepository) : FilmsContract.Presente
         loadFilms()
     }
 
-    override fun setView(view: FilmsContract.View?) {
+    override fun attachView(view: FilmsContract.View) {
         this.view = view
     }
 

@@ -15,6 +15,7 @@ import io.reactivex.Observable;
  */
 
 public interface GhibliFilmsDataSource {
+    boolean isEmpty();
     Observable<List<Film>> getFilms();
 
     Observable<Film> getFilm(@NonNull String id);

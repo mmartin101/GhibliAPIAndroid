@@ -12,16 +12,20 @@ import javax.inject.Singleton
 @Module
 class GhibliFilmsRepositoryModule {
     @Singleton
-    @Provides
     @Remote
-    fun provideGhibliFilmsRemoteDataSource(api: GhibliApi) {
-        GhibliFilmsRemoteDataSource(api)
+    @Provides
+    fun provideGhibliFilmsRemoteDataSource(api: GhibliApi): GhibliFilmsRemoteDataSource {
+        return GhibliFilmsRemoteDataSource(api)
     }
-
     @Singleton
     @Provides
     @Local
-    fun provideGhibliFilmsLocalDataSource(application: App) {
-        GhibliFilmsLocalDataSource(application)
+    fun provideGhibliFilmsLocalDataSource(application: App): GhibliFilmsLocalDataSource {
+        return GhibliFilmsLocalDataSource(application)
+    }
+
+    @Provides
+    fun provideGhibliFilmsRepository(remote: GhibliFilmsRemoteDataSource, local: GhibliFilmsLocalDataSource): GhibliFilmsRepository {
+        return GhibliFilmsRepository(remote, local)
     }
 }

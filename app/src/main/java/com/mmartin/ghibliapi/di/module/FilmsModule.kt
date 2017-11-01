@@ -12,7 +12,5 @@ import dagger.Provides
 class FilmsModule {
 
     @Provides
-    fun provideFilmsPresenter(repository: GhibliFilmsRepository): FilmsPresenter {
-        return FilmsPresenter(repository)
-    }
+    fun provideFilmsPresenter(repository: GhibliFilmsRepository): FilmsPresenter = FilmsPresenter(repository)
 }
