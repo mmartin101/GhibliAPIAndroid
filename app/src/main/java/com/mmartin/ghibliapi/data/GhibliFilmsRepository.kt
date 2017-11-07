@@ -4,7 +4,6 @@ import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
 import com.mmartin.ghibliapi.film.Film
 import io.reactivex.Observable
-import io.reactivex.functions.BiFunction
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,17 +15,14 @@ import javax.inject.Singleton
  */
 @Singleton
 class GhibliFilmsRepository @Inject
-constructor(@param:Remote internal var remoteDataSource: GhibliFilmsDataSource, @param:Local internal var localDataSource: GhibliFilmsDataSource) : GhibliFilmsDataSource {
-    override fun isEmpty(): Boolean {
-        return false
-    }
-
+constructor(@param:Remote internal var remoteDataSource: GhibliFilmsDataSource, @param:Local internal var localDataSource: GhibliFilmsDataSource) : GhibliFilmsDataSource() {
     override fun getFilms(): Observable<List<Film>> {
         if (localDataSource.isEmpty) {
-            return Observable.zip(localDataSource.films, remoteDataSource.films, BiFunction { local, remote ->
-                localDataSource.storeFilms(remote)
-                remote
-            })
+            return remoteDataSource.films
+                    .map {
+                        localDataSource.storeFilms(it)
+                        it
+                    }
         }
 
         return localDataSource.films
@@ -36,14 +32,5 @@ constructor(@param:Remote internal var remoteDataSource: GhibliFilmsDataSource, 
         return if (localDataSource.getFilm(id) != null) {
             localDataSource.getFilm(id)
         } else remoteDataSource.getFilm(id)
-
-    }
-
-    override fun storeFilms(films: List<Film>) {
-        // nada
-    }
-
-    override fun storeFilm(film: Film) {
-        // nada
     }
 }

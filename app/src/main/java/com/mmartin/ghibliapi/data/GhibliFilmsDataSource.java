@@ -14,12 +14,18 @@ import io.reactivex.Observable;
  * Created by mmartin on 8/12/17.
  */
 
-public interface GhibliFilmsDataSource {
-    boolean isEmpty();
-    Observable<List<Film>> getFilms();
+public abstract class GhibliFilmsDataSource {
+    boolean isEmpty() {
+        return false;
+    }
 
-    Observable<Film> getFilm(@NonNull String id);
+    public abstract Observable<List<Film>> getFilms();
 
-    void storeFilms(List<Film> films);
-    void storeFilm(Film film);
+    public abstract Observable<Film> getFilm(@NonNull String id);
+
+    void storeFilms(List<Film> films) {
+    }
+
+    void storeFilm(Film film) {
+    }
 }

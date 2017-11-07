@@ -19,7 +19,7 @@ import io.reactivex.Observable;
  * <p>
  * Created by mmartin on 10/11/17.
  */
-public class GhibliFilmsLocalDataSource implements GhibliFilmsDataSource {
+public class GhibliFilmsLocalDataSource extends GhibliFilmsDataSource {
     private Map<String, Film> filmMap;
 
     @Inject

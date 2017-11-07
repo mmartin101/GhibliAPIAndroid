@@ -24,7 +24,7 @@ import timber.log.Timber;
  * <p>
  * Created by mmartin on 9/12/17.
  */
-public class FakeFilmsRemoteDataSource implements GhibliFilmsDataSource {
+public class FakeFilmsRemoteDataSource extends GhibliFilmsDataSource {
     App app;
     Moshi moshi = new Moshi.Builder().build();
 
@@ -32,11 +32,6 @@ public class FakeFilmsRemoteDataSource implements GhibliFilmsDataSource {
     public FakeFilmsRemoteDataSource(@NonNull App app) {
         this.app = app;
 
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 
     @Override
@@ -57,15 +52,5 @@ public class FakeFilmsRemoteDataSource implements GhibliFilmsDataSource {
     @Override
     public Observable<Film> getFilm(@NonNull String id) {
         return Observable.empty();
-    }
-
-    @Override
-    public void storeFilms(List<Film> films) {
-        // nada
-    }
-
-    @Override
-    public void storeFilm(Film film) {
-        // nada
     }
 }
