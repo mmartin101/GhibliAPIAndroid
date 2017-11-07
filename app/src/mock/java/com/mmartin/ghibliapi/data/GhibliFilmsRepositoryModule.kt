@@ -16,8 +16,8 @@ class GhibliFilmsRepositoryModule {
     @Singleton
     @Remote
     @Provides
-    fun provideGhibliFilmsRemoteDataSource(api: GhibliApi): GhibliFilmsRemoteDataSource {
-        return GhibliFilmsRemoteDataSource(api)
+    fun provideGhibliFilmsRemoteDataSource(application: App): FakeFilmsRemoteDataSource {
+        return FakeFilmsRemoteDataSource(application)
     }
     @Singleton
     @Provides
@@ -26,8 +26,9 @@ class GhibliFilmsRepositoryModule {
         return GhibliFilmsLocalDataSource(application)
     }
 
+    @Singleton
     @Provides
-    fun provideGhibliFilmsRepository(remote: GhibliFilmsRemoteDataSource, local: GhibliFilmsLocalDataSource): GhibliFilmsRepository {
+    fun provideGhibliFilmsRepository(remote: FakeFilmsRemoteDataSource, local: GhibliFilmsLocalDataSource): GhibliFilmsRepository {
         return GhibliFilmsRepository(remote, local)
     }
 }

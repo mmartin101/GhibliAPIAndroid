@@ -8,6 +8,8 @@ import timber.log.Timber
 import javax.inject.Inject
 
 /**
+ * Presenter for the film detail screen
+ *
  * Created by mmartin on 8/12/17.
  */
 

@@ -12,6 +12,8 @@ import com.mmartin.ghibliapi.di.component.RepositoryComponent;
 import com.mmartin.ghibliapi.di.module.ApplicationModule;
 import com.mmartin.ghibliapi.di.module.NetworkModule;
 
+import timber.log.Timber;
+
 /**
  * Created by mmartin on 10/11/17.
  */
@@ -33,6 +35,7 @@ public class App extends Application {
 
         networkComponent = DaggerNetworkComponent.builder().networkModule(new NetworkModule()).build();
         repositoryComponent = DaggerRepositoryComponent.builder().appComponent(appComponent).networkComponent(networkComponent).build();
+        Timber.plant(new Timber.DebugTree());
     }
 
     public AppComponent getAppComponent() {
