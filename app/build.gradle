@@ -78,16 +78,11 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
     implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerVersion"
 
 
     implementation 'com.jakewharton.timber:timber:4.5.1'
-    implementation 'com.jakewharton:butterknife:8.5.1'
     implementation 'jp.wasabeef:recyclerview-animators:2.2.6'
 
-    kapt 'com.jakewharton:butterknife-compiler:8.5.1'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     testImplementation 'junit:junit:4.12'
 }
