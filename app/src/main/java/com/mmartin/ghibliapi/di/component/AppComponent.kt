@@ -2,8 +2,6 @@ package com.mmartin.ghibliapi.di.component
 
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.di.module.ApplicationModule
-import com.mmartin.ghibliapi.data.GhibliFilmsRepositoryModule
-import com.mmartin.ghibliapi.di.module.NetworkModule
 import dagger.Component
 
 /**

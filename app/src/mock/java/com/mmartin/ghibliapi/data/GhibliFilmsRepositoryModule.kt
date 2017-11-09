@@ -3,7 +3,6 @@ package com.mmartin.ghibliapi.data
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
-import com.mmartin.ghibliapi.network.GhibliApi
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -19,6 +18,7 @@ class GhibliFilmsRepositoryModule {
     fun provideGhibliFilmsRemoteDataSource(application: App): FakeFilmsRemoteDataSource {
         return FakeFilmsRemoteDataSource(application)
     }
+
     @Singleton
     @Provides
     @Local

@@ -13,7 +13,6 @@ import javax.inject.Singleton
  *
  * Created by mmartin on 9/12/17.
  */
-@Singleton
 class GhibliFilmsRepository @Inject
 constructor(@param:Remote internal var remoteDataSource: GhibliFilmsDataSource, @param:Local internal var localDataSource: GhibliFilmsDataSource) : GhibliFilmsDataSource() {
     override fun getFilms(): Observable<List<Film>> {
