@@ -1,7 +1,5 @@
 package com.mmartin.ghibliapi.network;
 
-import com.mmartin.ghibliapi.people.GhibliPeopleService;
-
 import javax.inject.Singleton;
 
 import retrofit2.Retrofit;
@@ -25,11 +23,11 @@ public class GhibliApi {
                 .build();
     }
 
-    public GhibliFilmService getFilmService() {
-        return retrofit.create(GhibliFilmService.class);
+    public FilmService getFilmService() {
+        return retrofit.create(FilmService.class);
     }
 
-    public GhibliPeopleService getPeopleService() {
-        return retrofit.create(GhibliPeopleService.class);
+    public PeopleService getPeopleService() {
+        return retrofit.create(PeopleService.class);
     }
 }

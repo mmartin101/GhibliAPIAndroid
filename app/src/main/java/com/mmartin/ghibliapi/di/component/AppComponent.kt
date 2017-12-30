@@ -9,6 +9,5 @@ import dagger.Component
  */
 @Component(modules = arrayOf(ApplicationModule::class))
 interface AppComponent {
-    fun inject(app: App)
     fun getApp(): App
 }

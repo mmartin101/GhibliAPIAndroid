@@ -4,7 +4,6 @@ import com.mmartin.ghibliapi.di.Activity
 import com.mmartin.ghibliapi.di.module.FilmsModule
 import com.mmartin.ghibliapi.film.FilmsActivity
 import dagger.Component
-import javax.inject.Singleton
 
 /**
  * Created by mmartin on 10/21/17.

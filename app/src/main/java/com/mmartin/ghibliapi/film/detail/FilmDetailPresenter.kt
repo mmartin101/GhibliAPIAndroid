@@ -1,6 +1,6 @@
 package com.mmartin.ghibliapi.film.detail
 
-import com.mmartin.ghibliapi.data.GhibliFilmsRepository
+import com.mmartin.ghibliapi.data.FilmsRepository
 import com.mmartin.ghibliapi.film.Film
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 
 class FilmDetailPresenter @Inject
-constructor(internal var dataRepository: GhibliFilmsRepository) : FilmDetailContract.Presenter {
+constructor(internal var dataRepository: FilmsRepository) : FilmDetailContract.Presenter {
     var view: FilmDetailContract.View? = null
     var filmId: String? = null
 

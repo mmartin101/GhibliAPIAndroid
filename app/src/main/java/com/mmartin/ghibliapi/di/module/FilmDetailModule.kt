@@ -1,6 +1,6 @@
 package com.mmartin.ghibliapi.di.module
 
-import com.mmartin.ghibliapi.data.GhibliFilmsRepository
+import com.mmartin.ghibliapi.data.FilmsRepository
 import com.mmartin.ghibliapi.film.detail.FilmDetailPresenter
 import dagger.Module
 import dagger.Provides
@@ -12,5 +12,5 @@ import dagger.Provides
 class FilmDetailModule {
 
     @Provides
-    fun providePresenter(dataRepository: GhibliFilmsRepository) = FilmDetailPresenter(dataRepository)
+    fun providePresenter(dataRepository: FilmsRepository) = FilmDetailPresenter(dataRepository)
 }

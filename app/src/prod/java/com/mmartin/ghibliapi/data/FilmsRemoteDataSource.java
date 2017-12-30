@@ -16,17 +16,12 @@ import io.reactivex.Observable;
  * <p>
  * Created by mmartin on 9/12/17.
  */
-public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
+public class FilmsRemoteDataSource extends FilmsDataSource {
     GhibliApi api;
 
     @Inject
-    public GhibliFilmsRemoteDataSource(@NonNull GhibliApi api) {
+    public FilmsRemoteDataSource(@NonNull GhibliApi api) {
         this.api = api;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return false;
     }
 
     @Override
@@ -37,15 +32,5 @@ public class GhibliFilmsRemoteDataSource implements GhibliFilmsDataSource {
     @Override
     public Observable<Film> getFilm(@NonNull String id) {
         return api.getFilmService().getFilmById(id);
-    }
-
-    @Override
-    public void storeFilms(List<Film> films) {
-        // nada
-    }
-
-    @Override
-    public void storeFilm(Film film) {
-        // nada
     }
 }

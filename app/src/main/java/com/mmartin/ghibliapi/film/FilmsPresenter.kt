@@ -1,6 +1,6 @@
 package com.mmartin.ghibliapi.film
 
-import com.mmartin.ghibliapi.data.GhibliFilmsRepository
+import com.mmartin.ghibliapi.data.FilmsRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -10,9 +10,9 @@ import timber.log.Timber
  *
  * Created by mmartin on 10/13/17.
  */
-class FilmsPresenter(repository: GhibliFilmsRepository) : FilmsContract.Presenter {
+class FilmsPresenter(repository: FilmsRepository) : FilmsContract.Presenter {
     private var view: FilmsContract.View? = null
-    private var dataRepository: GhibliFilmsRepository = repository
+    private var dataRepository: FilmsRepository = repository
 
     override fun start() {
         loadFilms()

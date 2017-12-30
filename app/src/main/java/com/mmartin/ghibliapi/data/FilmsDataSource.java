@@ -14,7 +14,7 @@ import io.reactivex.Observable;
  * Created by mmartin on 8/12/17.
  */
 
-public abstract class GhibliFilmsDataSource {
+public abstract class FilmsDataSource {
     boolean isEmpty() {
         return false;
     }

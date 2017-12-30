@@ -2,8 +2,6 @@ package com.mmartin.ghibliapi.di.module;
 
 import com.mmartin.ghibliapi.App;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 

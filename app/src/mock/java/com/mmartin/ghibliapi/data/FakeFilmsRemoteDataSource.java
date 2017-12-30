@@ -24,7 +24,7 @@ import timber.log.Timber;
  * <p>
  * Created by mmartin on 9/12/17.
  */
-public class FakeFilmsRemoteDataSource extends GhibliFilmsDataSource {
+public class FakeFilmsRemoteDataSource extends FilmsDataSource {
     App app;
     Moshi moshi = new Moshi.Builder().build();
 

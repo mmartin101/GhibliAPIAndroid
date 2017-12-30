@@ -11,7 +11,7 @@ import javax.inject.Singleton
  * Created by mmartin on 10/11/17.
  */
 @Module
-class GhibliFilmsRepositoryModule {
+class DataRepositoryModule {
     @Singleton
     @Remote
     @Provides
@@ -22,13 +22,13 @@ class GhibliFilmsRepositoryModule {
     @Singleton
     @Provides
     @Local
-    fun provideGhibliFilmsLocalDataSource(application: App): GhibliFilmsLocalDataSource {
-        return GhibliFilmsLocalDataSource(application)
+    fun provideGhibliFilmsLocalDataSource(application: App): FilmsLocalDataSource {
+        return FilmsLocalDataSource(application)
     }
 
     @Singleton
     @Provides
-    fun provideGhibliFilmsRepository(remote: FakeFilmsRemoteDataSource, local: GhibliFilmsLocalDataSource): GhibliFilmsRepository {
-        return GhibliFilmsRepository(remote, local)
+    fun provideGhibliFilmsRepository(remote: FakeFilmsRemoteDataSource, local: FilmsLocalDataSource): FilmsRepository {
+        return FilmsRepository(remote, local)
     }
 }

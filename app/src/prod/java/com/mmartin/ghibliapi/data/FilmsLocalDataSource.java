@@ -19,11 +19,12 @@ import io.reactivex.Observable;
  * <p>
  * Created by mmartin on 10/11/17.
  */
-public class GhibliFilmsLocalDataSource extends GhibliFilmsDataSource {
+// TODO implement Local DB storage instead of in memory
+public class FilmsLocalDataSource extends FilmsDataSource {
     private Map<String, Film> filmMap;
 
     @Inject
-    public GhibliFilmsLocalDataSource(App app) {
+    public FilmsLocalDataSource(App app) {
         filmMap = new HashMap<>();
     }
 
