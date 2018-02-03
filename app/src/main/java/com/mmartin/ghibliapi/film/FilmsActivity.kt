@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.R
+import com.mmartin.ghibliapi.data.model.Film
 import com.mmartin.ghibliapi.di.component.DaggerFilmsComponent
 import com.mmartin.ghibliapi.film.detail.FilmDetailActivity
 import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.mmartin.ghibliapi.R;
+import com.mmartin.ghibliapi.data.model.Film;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package com.mmartin.ghibliapi.data;
 
 import android.support.annotation.NonNull;
 
-import com.mmartin.ghibliapi.film.Film;
+import com.mmartin.ghibliapi.data.model.Film;
 
 import java.util.List;
 

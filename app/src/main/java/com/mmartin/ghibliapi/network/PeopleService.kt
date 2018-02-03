@@ -1,6 +1,6 @@
 package com.mmartin.ghibliapi.network
 
-import com.mmartin.ghibliapi.people.Person
+import com.mmartin.ghibliapi.data.model.Person
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.GET

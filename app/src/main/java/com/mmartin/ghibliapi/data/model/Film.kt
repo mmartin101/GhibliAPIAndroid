@@ -1,4 +1,4 @@
-package com.mmartin.ghibliapi.film
+package com.mmartin.ghibliapi.data.model
 
 import com.squareup.moshi.Json
 

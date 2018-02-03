@@ -1,7 +1,7 @@
 package com.mmartin.ghibliapi.film.detail
 
 import com.mmartin.ghibliapi.data.FilmsRepository
-import com.mmartin.ghibliapi.film.Film
+import com.mmartin.ghibliapi.data.model.Film
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber

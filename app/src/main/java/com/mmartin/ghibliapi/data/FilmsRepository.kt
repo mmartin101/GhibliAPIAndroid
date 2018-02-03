@@ -2,7 +2,7 @@ package com.mmartin.ghibliapi.data
 
 import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
-import com.mmartin.ghibliapi.film.Film
+import com.mmartin.ghibliapi.data.model.Film
 import io.reactivex.Observable
 import javax.inject.Inject
 

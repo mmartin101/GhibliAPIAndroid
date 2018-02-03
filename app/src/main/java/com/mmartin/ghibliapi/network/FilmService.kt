@@ -1,6 +1,6 @@
 package com.mmartin.ghibliapi.network
 
-import com.mmartin.ghibliapi.film.Film
+import com.mmartin.ghibliapi.data.model.Film
 
 
 import io.reactivex.Observable
