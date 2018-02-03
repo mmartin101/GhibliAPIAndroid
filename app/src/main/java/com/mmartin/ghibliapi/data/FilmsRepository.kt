@@ -1,9 +1,9 @@
 package com.mmartin.ghibliapi.data
 
+import com.mmartin.ghibliapi.data.model.Film
 import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
-import com.mmartin.ghibliapi.data.model.Film
-import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 /**
@@ -13,26 +13,29 @@ import javax.inject.Inject
  * Created by mmartin on 9/12/17.
  */
 class FilmsRepository @Inject
-constructor(@Remote var remoteDataSource: FilmsDataSource, @Local var localDataSource: FilmsDataSource) : FilmsDataSource() {
-    override fun getFilms(): Observable<List<Film>> {
-        if (localDataSource.isEmpty) {
-            return remoteDataSource.films
-                    .map {
-                        localDataSource.storeFilms(it)
-                        it
-                    }
+constructor(@Remote val remoteDataSource: FilmsDataSource, @Local val localDataSource: FilmsDataSource) : FilmsDataSource() {
+    override val films: Single<List<Film>>
+        get() {
+            return if (localDataSource.isEmpty) {
+                remoteDataSource.films
+                        .map {
+                            localDataSource.storeFilms(it)
+                            it
+                        }
+            } else {
+                localDataSource.films
+            }
         }
 
-        return localDataSource.films
-    }
-
-    override fun getFilm(id: String): Observable<Film> {
-        return if (localDataSource.getFilm(id) != null) {
+    override fun getFilm(id: String): Single<Film> {
+        return if (localDataSource.isEmpty) {
+            remoteDataSource.getFilm(id)
+                    .map {
+                        localDataSource.storeFilm(it)
+                        it
+                    }
+        } else {
             localDataSource.getFilm(id)
-        } else remoteDataSource.getFilm(id)
-                .map {
-                    localDataSource.storeFilm(it)
-                    it
-                }
+        }
     }
 }

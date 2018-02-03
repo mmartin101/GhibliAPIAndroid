@@ -15,20 +15,14 @@ class DataRepositoryModule {
     @Singleton
     @Remote
     @Provides
-    fun provideGhibliFilmsRemoteDataSource(application: App): FakeFilmsRemoteDataSource {
+    fun provideGhibliFilmsRemoteDataSource(application: App): FilmsDataSource {
         return FakeFilmsRemoteDataSource(application)
     }
 
     @Singleton
     @Provides
     @Local
-    fun provideGhibliFilmsLocalDataSource(application: App): FilmsLocalDataSource {
+    fun provideGhibliFilmsLocalDataSource(application: App): FilmsDataSource {
         return FilmsLocalDataSource(application)
-    }
-
-    @Singleton
-    @Provides
-    fun provideGhibliFilmsRepository(remote: FakeFilmsRemoteDataSource, local: FilmsLocalDataSource): FilmsRepository {
-        return FilmsRepository(remote, local)
     }
 }
