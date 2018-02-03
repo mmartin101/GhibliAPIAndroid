@@ -9,7 +9,7 @@ import dagger.Component
  * Created by mmartin on 10/21/17.
  */
 @Activity
-@Component(dependencies = arrayOf(RepositoryComponent::class), modules = arrayOf(FilmsModule::class))
+@Component(dependencies = [(RepositoryComponent::class)], modules = [(FilmsModule::class)])
 interface FilmsComponent {
     fun inject(view: FilmsActivity)
 }

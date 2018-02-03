@@ -7,7 +7,7 @@ import dagger.Provides
 @Module
 class NetworkModule {
     @Provides
-    fun provideGhibliApi(ghibliApi: GhibliApi): GhibliApi {
-        return ghibliApi
+    fun provideGhibliApi(): GhibliApi {
+        return GhibliApi()
     }
 }

@@ -13,7 +13,7 @@ import javax.inject.Inject
  * Created by mmartin on 9/12/17.
  */
 class FilmsRepository @Inject
-constructor(@param:Remote internal var remoteDataSource: FilmsDataSource, @param:Local internal var localDataSource: FilmsDataSource) : FilmsDataSource() {
+constructor(@Remote var remoteDataSource: FilmsDataSource, @Local var localDataSource: FilmsDataSource) : FilmsDataSource() {
     override fun getFilms(): Observable<List<Film>> {
         if (localDataSource.isEmpty) {
             return remoteDataSource.films

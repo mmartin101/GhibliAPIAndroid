@@ -16,13 +16,11 @@ class DataRepositoryModule {
     @Singleton
     @Provides
     @Remote
-    fun provideFilmsRemoteDataSource(api: GhibliApi): FilmsRemoteDataSource {
-        return FilmsRemoteDataSource(api)
-    }
+    fun provideFilmsRemoteDataSource(api: GhibliApi): FilmsDataSource = FilmsRemoteDataSource(api)
+
     @Singleton
     @Provides
     @Local
-    fun provideFilmsLocalDataSource(application: App): FilmsLocalDataSource {
-        return FilmsLocalDataSource(application)
-    }
+    fun provideFilmsLocalDataSource(application: App): FilmsDataSource =
+            FilmsLocalDataSource(application)
 }
