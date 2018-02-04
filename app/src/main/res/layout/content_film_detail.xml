@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        tools:text="Hayao Miyazaki" />
+        tools:text="Director: Hayao Miyazaki" />
 
     <TextView
         android:id="@+id/film_producer"
@@ -39,5 +39,19 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         tools:text="Isao Takahata" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        tools:text="Characters" />
+
+    <LinearLayout
+        android:id="@+id/character_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" />
 
 </LinearLayout>

@@ -23,7 +23,7 @@ class FilmsPresenter(repository: FilmsRepository) : FilmsContract.Presenter {
     }
 
     override fun loadFilms() {
-        dataRepository.films
+        dataRepository.allItems
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({

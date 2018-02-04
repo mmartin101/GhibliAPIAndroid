@@ -16,11 +16,11 @@ import javax.inject.Inject
  * Created by mmartin on 9/12/17.
  */
 class FakeFilmsRemoteDataSource @Inject
-constructor(internal var app: App) : FilmsDataSource() {
+constructor(internal var app: App) : DataSource<Film>() {
     private var moshi = Moshi.Builder().build()
     private var filmList = listOf<Film>()
 
-    override val films: Single<List<Film>>
+    override val allItems: Single<List<Film>>
         get() {
             return Single.create<List<Film>> { sub ->
                 try {
@@ -35,7 +35,7 @@ constructor(internal var app: App) : FilmsDataSource() {
             }
         }
 
-    override fun getFilm(id: String): Single<Film> {
+    override fun getItem(id: String): Single<Film> {
         return Single.create { sub ->
             filmList.find { it.id == id }?.let { sub.onSuccess(it) }
                     ?: sub.onError(NoSuchElementException("No film with that id..."))

@@ -1,6 +1,7 @@
 package com.mmartin.ghibliapi.data
 
 import com.mmartin.ghibliapi.App
+import com.mmartin.ghibliapi.data.model.Film
 import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
 import dagger.Module
@@ -15,14 +16,14 @@ class DataRepositoryModule {
     @Singleton
     @Remote
     @Provides
-    fun provideGhibliFilmsRemoteDataSource(application: App): FilmsDataSource {
+    fun provideGhibliFilmsRemoteDataSource(application: App): DataSource<Film> {
         return FakeFilmsRemoteDataSource(application)
     }
 
     @Singleton
     @Provides
     @Local
-    fun provideGhibliFilmsLocalDataSource(application: App): FilmsDataSource {
+    fun provideGhibliFilmsLocalDataSource(application: App): DataSource<Film> {
         return FilmsLocalDataSource(application)
     }
 }

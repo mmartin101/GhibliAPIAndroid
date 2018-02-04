@@ -13,29 +13,29 @@ import javax.inject.Inject
  * Created by mmartin on 9/12/17.
  */
 class FilmsRepository @Inject
-constructor(@Remote val remoteDataSource: FilmsDataSource, @Local val localDataSource: FilmsDataSource) : FilmsDataSource() {
-    override val films: Single<List<Film>>
+constructor(@Remote val remoteDataSource: DataSource<Film>, @Local val localDataSource: DataSource<Film>) : DataSource<Film>() {
+    override val allItems: Single<List<Film>>
         get() {
             return if (localDataSource.isEmpty) {
-                remoteDataSource.films
+                remoteDataSource.allItems
                         .map {
-                            localDataSource.storeFilms(it)
+                            localDataSource.store(it)
                             it
                         }
             } else {
-                localDataSource.films
+                localDataSource.allItems
             }
         }
 
-    override fun getFilm(id: String): Single<Film> {
+    override fun getItem(id: String): Single<Film> {
         return if (localDataSource.isEmpty) {
-            remoteDataSource.getFilm(id)
+            remoteDataSource.getItem(id)
                     .map {
-                        localDataSource.storeFilm(it)
+                        localDataSource.store(it)
                         it
                     }
         } else {
-            localDataSource.getFilm(id)
+            localDataSource.getItem(id)
         }
     }
 }

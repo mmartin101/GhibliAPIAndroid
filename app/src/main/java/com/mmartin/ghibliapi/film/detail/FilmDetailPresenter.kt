@@ -14,7 +14,7 @@ import javax.inject.Inject
  */
 
 class FilmDetailPresenter @Inject
-constructor(internal var dataRepository: FilmsRepository) : FilmDetailContract.Presenter {
+constructor(private var dataRepository: FilmsRepository) : FilmDetailContract.Presenter {
     var view: FilmDetailContract.View? = null
     var filmId: String? = null
 
@@ -24,7 +24,7 @@ constructor(internal var dataRepository: FilmsRepository) : FilmDetailContract.P
 
     fun loadFilm() {
         filmId?.let {
-            dataRepository.getFilm(it)
+            dataRepository.getItem(it)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -47,6 +47,10 @@ constructor(internal var dataRepository: FilmsRepository) : FilmDetailContract.P
 
         film.director?.let {
             view?.showDirector(it)
+        }
+
+        film.people?.let {
+
         }
     }
 

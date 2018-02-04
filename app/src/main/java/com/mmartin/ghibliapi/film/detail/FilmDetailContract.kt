@@ -16,7 +16,7 @@ interface FilmDetailContract {
         fun showDescription(description: String)
         fun showDirector(director: String)
         fun showProducer(producer: String)
-        fun showPeople()  //List of string/People??
+        fun showPeople(people: List<Pair<String, String>>)
     }
 
     interface Presenter : BasePresenter<View>

@@ -16,13 +16,13 @@ import kotlin.String
  * Created by mmartin on 10/11/17.
  */
 class FilmsLocalDataSource @Inject
-constructor(app: App) : FilmsDataSource() {
+constructor(app: App) : DataSource<Film>() {
     private val filmMap: MutableMap<String, Film>
 
     override val isEmpty: Boolean
         get() = filmMap.isEmpty()
 
-    override val films: Single<List<Film>>
+    override val allItems: Single<List<Film>>
         get() {
             return Single.create { sub ->
                 if (filmMap.isEmpty()) {
@@ -38,7 +38,7 @@ constructor(app: App) : FilmsDataSource() {
         filmMap = HashMap()
     }
 
-    override fun getFilm(id: String): Single<Film> {
+    override fun getItem(id: String): Single<Film> {
         return Single.create { sub ->
             if (filmMap.containsKey(id)) {
                 sub.onSuccess(filmMap[id]!!)
@@ -48,11 +48,11 @@ constructor(app: App) : FilmsDataSource() {
         }
     }
 
-    override fun storeFilms(films: List<Film>) {
-        films.forEach { filmMap[it.id] = it }
+    override fun store(itemList: List<Film>) {
+        itemList.forEach { filmMap[it.id] = it }
     }
 
-    override fun storeFilm(film: Film) {
-        filmMap[film.id] = film
+    override fun store(item: Film) {
+        filmMap[item.id] = item
     }
 }
