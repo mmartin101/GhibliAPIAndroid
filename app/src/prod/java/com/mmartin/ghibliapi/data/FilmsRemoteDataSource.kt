@@ -6,18 +6,17 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 /**
- * Concrete implementation for getting data from the Ghibli API
- *
+ * Concrete implementation for getting film data from the Ghibli API
  *
  * Created by mmartin on 9/12/17.
  */
 class FilmsRemoteDataSource @Inject
-constructor(private val api: GhibliApi) : FilmsDataSource() {
+constructor(private val api: GhibliApi) : DataSource<Film>() {
 
-    override val films: Single<List<Film>>
+    override val allItems: Single<List<Film>>
         get() = api.filmService.films
 
-    override fun getFilm(id: String): Single<Film> {
+    override fun getItem(id: String): Single<Film> {
         return api.filmService.getFilmById(id)
     }
 }

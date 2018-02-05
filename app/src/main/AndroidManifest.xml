@@ -22,12 +22,16 @@
         <activity
             android:name=".film.detail.FilmDetailActivity"
             android:label="@string/title_activity_film_detail"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".film.FilmsActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mmartin.ghibliapi.MainActivity" />
+                android:value="com.mmartin.ghibliapi.film.FilmsActivity" />
         </activity>
+        <activity
+            android:name=".person.PersonDetailActivity"
+            android:label="@string/title_activity_person_detail"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

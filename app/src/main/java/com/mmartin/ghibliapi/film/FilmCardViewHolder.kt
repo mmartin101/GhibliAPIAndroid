@@ -16,6 +16,6 @@ class FilmCardViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bindData(film: Film) {
         itemView.film_title_text_view.text = film.title
         itemView.film_description_text_view.text = film.description
-        itemView.film_release_date_text_view.text = film.releaseDate
+        itemView.film_release_date_text_view.text = film.release_date
     }
 }

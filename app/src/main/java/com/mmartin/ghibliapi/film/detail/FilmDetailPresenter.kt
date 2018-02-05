@@ -1,6 +1,7 @@
 package com.mmartin.ghibliapi.film.detail
 
 import com.mmartin.ghibliapi.data.FilmsRepository
+import com.mmartin.ghibliapi.data.PeopleRepository
 import com.mmartin.ghibliapi.data.model.Film
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -14,7 +15,8 @@ import javax.inject.Inject
  */
 
 class FilmDetailPresenter @Inject
-constructor(private var dataRepository: FilmsRepository) : FilmDetailContract.Presenter {
+constructor(private val filmsRepository: FilmsRepository,
+            private val peopleRepository: PeopleRepository) : FilmDetailContract.Presenter {
     var view: FilmDetailContract.View? = null
     var filmId: String? = null
 
@@ -22,9 +24,9 @@ constructor(private var dataRepository: FilmsRepository) : FilmDetailContract.Pr
         loadFilm()
     }
 
-    fun loadFilm() {
+    private fun loadFilm() {
         filmId?.let {
-            dataRepository.getItem(it)
+            filmsRepository.getItem(it)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -50,7 +52,11 @@ constructor(private var dataRepository: FilmsRepository) : FilmDetailContract.Pr
         }
 
         film.people?.let {
-
+            peopleRepository.allItems
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .map { it.map { Pair(it.id, it.name!!) } }
+                    .subscribe({ view?.showPeople(it) }, { Timber.d(it) })
         }
     }
 

@@ -49,4 +49,5 @@ ext {
     sqlbriteVersion = '2.0.0'
     retrofitVersion = '2.3.0'
     daggerVersion = '2.11'
+    ankoVersion = '0.10.4'
 }

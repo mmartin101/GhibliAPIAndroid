@@ -2,7 +2,6 @@ package com.mmartin.ghibliapi.network
 
 import com.mmartin.ghibliapi.data.model.Person
 import io.reactivex.Single
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -14,8 +13,8 @@ import retrofit2.http.Path
 
 interface PeopleService {
     @get:GET("people")
-    val people: Call<Single<List<Person>>>
+    val people: Single<List<Person>>
 
     @GET("people/{id}")
-    fun getPeopleById(@Path("id") personId: String): Call<Single<Person>>
+    fun getPeopleById(@Path("id") personId: String): Single<Person>
 }

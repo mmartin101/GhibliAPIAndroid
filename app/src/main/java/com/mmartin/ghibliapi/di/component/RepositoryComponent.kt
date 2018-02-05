@@ -2,6 +2,7 @@ package com.mmartin.ghibliapi.di.component
 
 import com.mmartin.ghibliapi.data.DataRepositoryModule
 import com.mmartin.ghibliapi.data.FilmsRepository
+import com.mmartin.ghibliapi.data.PeopleRepository
 import com.mmartin.ghibliapi.di.module.NetworkModule
 import dagger.Component
 import javax.inject.Singleton
@@ -13,4 +14,5 @@ import javax.inject.Singleton
 @Component(dependencies = [(AppComponent::class)], modules = [(NetworkModule::class), (DataRepositoryModule::class)])
 interface RepositoryComponent {
     fun getFilmsRepository(): FilmsRepository
+    fun getPeopleRepository(): PeopleRepository
 }

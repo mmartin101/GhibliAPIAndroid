@@ -4,12 +4,16 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.widget.TextView
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.R
 import com.mmartin.ghibliapi.di.component.DaggerFilmDetailComponent
+import com.mmartin.ghibliapi.person.PersonAdapter
 import com.mmartin.ghibliapi.person.PersonTextView
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_film_detail.*
 import javax.inject.Inject
 
@@ -26,6 +30,7 @@ class FilmDetailActivity : AppCompatActivity(), FilmDetailContract.View {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         filmId = intent?.getStringExtra("film")
+        character_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     }
 
     override fun onStart() {
@@ -62,13 +67,9 @@ class FilmDetailActivity : AppCompatActivity(), FilmDetailContract.View {
     }
 
     override fun showPeople(people: List<Pair<String, String>>) {
-        people.forEach { p ->
-            val textView = PersonTextView(this)
-            textView.personId = p.first
-            textView.text = p.second
-
-            character_layout.addView(textView)
-        }
+        val adapter = PersonAdapter()
+        character_recycler_view.adapter = adapter
+        adapter.addAll(people)
     }
 
     companion object {
