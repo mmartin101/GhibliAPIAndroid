@@ -1,12 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.31'
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
+        classpath 'com.android.tools.build:gradle:3.1.2'
 
         // Better IDE support for annotations (so Android Studio interacts better with Dagger)
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
@@ -20,6 +21,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 
@@ -33,10 +35,10 @@ ext {
     minSdkVersion = 19
     targetSdkVersion = 26
     compileSdkVersion = 26
-    buildToolsVersion = '26.0.2'
+    buildToolsVersion = '27.0.3'
 
     // App dependencies
-    supportLibraryVersion = '26.1.0'
+    supportLibraryVersion = '27.1.1'
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
     powerMockito = '1.6.2'
@@ -44,10 +46,10 @@ ext {
     runnerVersion = '1.0.0'
     rulesVersion = '1.0.0'
     espressoVersion = '3.0.0'
-    rxjavaVersion = '2.1.2'
+    rxjavaVersion = '2.1.13'
     rxandroidVersion = '2.0.1'
     sqlbriteVersion = '2.0.0'
-    retrofitVersion = '2.3.0'
+    retrofitVersion = '2.4.0'
     daggerVersion = '2.11'
     ankoVersion = '0.10.4'
 }
