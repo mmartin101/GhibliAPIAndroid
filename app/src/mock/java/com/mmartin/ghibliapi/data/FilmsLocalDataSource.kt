@@ -1,6 +1,5 @@
 package com.mmartin.ghibliapi.data
 
-import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.data.model.Film
 import io.reactivex.Single
 import java.util.HashMap
@@ -16,7 +15,7 @@ import kotlin.String
  * Created by mmartin on 10/11/17.
  */
 class FilmsLocalDataSource @Inject
-constructor(app: App) : DataSource<Film>() {
+constructor() : DataSource<Film>() {
     private val filmMap: MutableMap<String, Film>
 
     override val isEmpty: Boolean

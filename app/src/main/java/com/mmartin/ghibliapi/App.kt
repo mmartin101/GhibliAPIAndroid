@@ -1,14 +1,12 @@
 package com.mmartin.ghibliapi
 
-import android.app.Application
 import android.content.Context
-
+import android.support.multidex.MultiDexApplication
 import com.mmartin.ghibliapi.di.component.AppComponent
 import com.mmartin.ghibliapi.di.component.DaggerAppComponent
 import com.mmartin.ghibliapi.di.component.DaggerRepositoryComponent
 import com.mmartin.ghibliapi.di.component.RepositoryComponent
 import com.mmartin.ghibliapi.di.module.ApplicationModule
-
 import timber.log.Timber
 
 /**
@@ -18,7 +16,7 @@ import timber.log.Timber
  * Created by mmartin on 10/11/17.
  */
 
-class App : Application() {
+class App : MultiDexApplication() {
     lateinit var appComponent: AppComponent
         internal set
     lateinit var repositoryComponent: RepositoryComponent
