@@ -11,21 +11,15 @@ import com.mmartin.ghibliapi.R
 class PersonAdapter : RecyclerView.Adapter<PersonViewHolder>() {
     private val list = mutableListOf<Pair<String, String>>()
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PersonViewHolder? {
-        parent?.let {
-            val view = LayoutInflater.from(it.context).inflate(R.layout.view_holder_person, null)
-            return PersonViewHolder(view)
-        }
-
-        return null
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PersonViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.view_holder_person, null)
+        return PersonViewHolder(view)
     }
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: PersonViewHolder?, position: Int) {
-        holder?.let {
-            it.bind(list[position])
-        }
+    override fun onBindViewHolder(holder: PersonViewHolder, position: Int) {
+        holder.bind(list[position])
     }
 
     fun addAll(peopleList: List<Pair<String, String>>) {
