@@ -3,17 +3,14 @@ package com.mmartin.ghibliapi.film.detail
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
-import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.R
 import com.mmartin.ghibliapi.di.component.DaggerFilmDetailComponent
 import com.mmartin.ghibliapi.person.PersonAdapter
-import com.mmartin.ghibliapi.person.PersonTextView
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_film_detail.*
 import javax.inject.Inject
 
@@ -30,7 +27,7 @@ class FilmDetailActivity : AppCompatActivity(), FilmDetailContract.View {
         setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         filmId = intent?.getStringExtra("film")
-        character_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        character_recycler_view.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
     }
 
     override fun onStart() {

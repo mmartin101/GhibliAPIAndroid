@@ -1,7 +1,7 @@
 package com.mmartin.ghibliapi.film
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 import com.mmartin.ghibliapi.data.model.Film
 import kotlinx.android.synthetic.main.view_film_list_item.view.*
 

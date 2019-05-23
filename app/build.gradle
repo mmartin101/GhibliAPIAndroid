@@ -11,12 +11,12 @@ allprojects {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-    buildToolsVersion rootProject.ext.buildToolsVersion
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
     defaultConfig {
         applicationId "com.mmartin.ghibliapi"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdkVersion
         vectorDrawables.useSupportLibrary true
         multiDexEnabled true
         versionCode 1
@@ -60,7 +60,7 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraintlayout"
     implementation "androidx.legacy:legacy-support-v4:$versions.support_v4"
     implementation "androidx.multidex:multidex:$versions.multidex"
-    implementation "androidx.preference:preference:$versions.preference"
+//    implementation "androidx.preference:preference:$versions.preference"
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
 
     implementation "com.google.android.material:material:$versions.material"
@@ -72,8 +72,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
     implementation "com.squareup.moshi:moshi-kotlin:$versions.moshi"
 
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxAndroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava2"
 
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 
@@ -81,13 +81,13 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$versions.kotlin"
 
     // Dagger dependencies
-    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
     compileOnly 'org.glassfish:javax.annotation:10.0-b28'
-    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger:$versions.dagger"
 
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 }
 repositories {
     mavenCentral()

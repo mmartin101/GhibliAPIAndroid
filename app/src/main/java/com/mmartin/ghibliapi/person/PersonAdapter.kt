@@ -1,8 +1,8 @@
 package com.mmartin.ghibliapi.person
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.mmartin.ghibliapi.R
 
 /**

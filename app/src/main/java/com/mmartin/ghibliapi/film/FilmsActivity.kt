@@ -1,13 +1,13 @@
 package com.mmartin.ghibliapi.film
 
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.R
 import com.mmartin.ghibliapi.data.model.Film
@@ -60,6 +60,7 @@ class FilmsActivity : AppCompatActivity(), FilmsContract.View {
         val alphaAdapter = AlphaInAnimationAdapter(adapter)
         alphaAdapter.setDuration(1000)
         recycler_view.adapter = alphaAdapter
+//        recycler_view.adapter = adapter
     }
 
     override fun onStart() {

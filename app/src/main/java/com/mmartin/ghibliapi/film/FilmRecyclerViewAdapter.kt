@@ -1,8 +1,8 @@
 package com.mmartin.ghibliapi.film
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
 import com.mmartin.ghibliapi.R
 import com.mmartin.ghibliapi.data.model.Film
 import java.util.*

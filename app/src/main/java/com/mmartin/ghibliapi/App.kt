@@ -1,7 +1,7 @@
 package com.mmartin.ghibliapi
 
 import android.content.Context
-import android.support.multidex.MultiDexApplication
+import androidx.multidex.MultiDexApplication
 import com.mmartin.ghibliapi.di.component.AppComponent
 import com.mmartin.ghibliapi.di.component.DaggerAppComponent
 import com.mmartin.ghibliapi.di.component.DaggerRepositoryComponent
