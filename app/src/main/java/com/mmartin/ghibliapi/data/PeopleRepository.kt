@@ -3,6 +3,7 @@ package com.mmartin.ghibliapi.data
 import com.mmartin.ghibliapi.data.model.Person
 import com.mmartin.ghibliapi.di.Local
 import com.mmartin.ghibliapi.di.Remote
+import io.reactivex.Flowable
 import io.reactivex.Single
 import javax.inject.Inject
 
@@ -11,7 +12,7 @@ import javax.inject.Inject
  */
 class PeopleRepository @Inject
 constructor(@Remote val remoteDataSource: DataSource<Person>, @Local val localDataSource: DataSource<Person>) : DataSource<Person>() {
-    override val allItems: Single<List<Person>>
+    override val allItems: Flowable<List<Person>>
         get() {
             return if (localDataSource.isEmpty) {
                 remoteDataSource.allItems
@@ -24,7 +25,7 @@ constructor(@Remote val remoteDataSource: DataSource<Person>, @Local val localDa
             }
         }
 
-    override fun getItem(id: String): Single<Person> {
+    override fun getItem(id: String): Flowable<Person> {
         return if (localDataSource.isEmpty) {
             remoteDataSource.getItem(id)
                     .map {

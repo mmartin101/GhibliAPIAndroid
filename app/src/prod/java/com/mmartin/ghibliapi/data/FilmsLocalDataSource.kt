@@ -1,8 +1,13 @@
 package com.mmartin.ghibliapi.data
 
+import androidx.room.Room
 import com.mmartin.ghibliapi.App
 import com.mmartin.ghibliapi.data.model.Film
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -10,41 +15,37 @@ import javax.inject.Inject
  *
  * Created by mmartin on 10/11/17.
  */
-// TODO implement Local DB storage instead of in memory
 class FilmsLocalDataSource @Inject
 constructor(app: App) : DataSource<Film>() {
-    private val filmMap: MutableMap<String, Film> = mutableMapOf()
+    private val appDatabase: AppDatabase = Room.databaseBuilder(app, AppDatabase::class.java, "AppDatabase.db")
+            .build()
 
     override val isEmpty: Boolean
-        get() = filmMap.isEmpty()
+        get() = appDatabase.filmDao().loadAllFilms()
+                .isEmpty.blockingGet()
 
-    override val allItems: Single<List<Film>>
+    override val allItems: Flowable<List<Film>>
         get() {
-            return Single.create { sub ->
-                if (filmMap.isEmpty()) {
-                    // TODO use a custom exception here, no such element doesn't really fit...
-                    sub.onError(NoSuchElementException("Local cache is empty"))
-                } else {
-                    sub.onSuccess(filmMap.values.toList())
-                }
-            }
+            return appDatabase.filmDao().loadAllFilms()
         }
 
-    override fun getItem(id: String): Single<Film> {
-        return Single.create { sub ->
-            if (filmMap.containsKey(id)) {
-                sub.onSuccess(filmMap[id]!!)
-            } else {
-                sub.onError(NoSuchElementException("Film not found in local cache"))
-            }
-        }
+    override fun getItem(id: String): Flowable<Film> {
+        return appDatabase.filmDao().getFilm(id)
     }
 
     override fun store(itemList: List<Film>) {
-        itemList.forEach { filmMap[it.id] = it }
+        appDatabase.filmDao()
+                .insertFilms(*itemList.toTypedArray())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe({}, { error -> Timber.e(error) })
     }
 
     override fun store(item: Film) {
-        filmMap[item.id] = item
+        appDatabase.filmDao()
+                .insertFilms(item)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe({}, { error -> Timber.e(error) })
     }
 }

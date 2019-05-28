@@ -1,13 +1,16 @@
 package com.mmartin.ghibliapi.data.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /**
  * Model for People objects
  *
  * Created by mmartin on 5/24/17.
  */
-
+@Entity
 data class Person(
-        var id: String,
+        @PrimaryKey var id: String,
         var name: String? = null,
         var gender: String? = null,
         var age: String? = null,

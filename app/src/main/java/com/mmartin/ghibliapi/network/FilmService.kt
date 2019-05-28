@@ -2,7 +2,7 @@ package com.mmartin.ghibliapi.network
 
 
 import com.mmartin.ghibliapi.data.model.Film
-import io.reactivex.Single
+import io.reactivex.Flowable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -14,8 +14,8 @@ import retrofit2.http.Path
 
 interface FilmService {
     @get:GET("films")
-    val films: Single<List<Film>>
+    val films: Flowable<List<Film>>
 
     @GET("films/{id}")
-    fun getFilmById(@Path("id") filmId: String): Single<Film>
+    fun getFilmById(@Path("id") filmId: String): Flowable<Film>
 }
